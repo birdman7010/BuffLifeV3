@@ -16,6 +16,6 @@ public class busTracker extends Activity {
 
         webView = (WebView) findViewById(R.id.bustracker1);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://www.boulderbustracker.com");
+        webView.loadUrl("http://buffbusmobile.etaspot.net");
     }
 }
