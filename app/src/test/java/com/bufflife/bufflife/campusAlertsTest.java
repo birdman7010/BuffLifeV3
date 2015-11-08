@@ -4,18 +4,18 @@ package com.bufflife.bufflife;
  * Created by birdman on 11/7/15.
  */
 import android.content.Context;
-        import android.content.Intent;
-        import android.test.ActivityUnitTestCase;
-        import android.test.suitebuilder.annotation.MediumTest;
+import android.content.Intent;
+import android.test.ActivityUnitTestCase;
+import android.test.suitebuilder.annotation.MediumTest;
 import android.webkit.WebView;
 import android.widget.Button;
-public class busTrackerTest extends ActivityUnitTestCase<busTracker> {
+public class campusAlertsTest extends ActivityUnitTestCase<campusAlerts> {
 
     private Intent mStartIntent;
     private Button mButton;
 
-    public busTrackerTest() {
-        super(busTracker.class);
+    public campusAlertsTest() {
+        super(campusAlerts.class);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class busTrackerTest extends ActivityUnitTestCase<busTracker> {
     @MediumTest
     public void testPreconditions() {
         startActivity(mStartIntent, null, null);
-        mButton = (Button) getActivity().findViewById(R.id.bustracker1);
+        mButton = (Button) getActivity().findViewById(R.id.campusalerts1);
 
         assertNotNull(getActivity());
         assertNotNull(mButton);
@@ -48,8 +48,8 @@ public class busTrackerTest extends ActivityUnitTestCase<busTracker> {
      */
     @MediumTest
     public void testSubLaunch() {
-        busTracker activity = startActivity(mStartIntent, null, null);
-        mButton = (Button) activity.findViewById(R.id.bustracker1);
+        campusAlerts activity = startActivity(mStartIntent, null, null);
+        mButton = (Button) activity.findViewById(R.id.campusalerts1);
 
         // This test confirms that when you click the button, the activity attempts to open
         // another activity (by calling startActivity) and close itself (by calling finish()).
@@ -64,7 +64,7 @@ public class busTrackerTest extends ActivityUnitTestCase<busTracker> {
      */
     @MediumTest
     public void testLifeCycleCreate() {
-        busTracker activity = startActivity(mStartIntent, null, null);
+        campusAlerts activity = startActivity(mStartIntent, null, null);
 
         // At this point, onCreate() has been called, but nothing else
         // Complete the startup of the activity
