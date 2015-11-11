@@ -4,6 +4,8 @@ package com.bufflife.bufflife;
  * Created by birdman on 11/7/15.
  */
 
+import android.content.Intent;
+
 import com.bufflife.bufflife.busTracker;
 
 import org.junit.Test;

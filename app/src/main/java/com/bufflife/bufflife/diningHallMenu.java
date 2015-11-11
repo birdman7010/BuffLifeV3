@@ -1,7 +1,8 @@
 package com.bufflife.bufflife;
 
 import android.app.Activity;
-import android.provider.DocumentsContract;
+import android.os.Bundle;
+import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,14 +26,38 @@ public class diningHallMenu extends Activity{
     }
 
     //fetches the text in the Sewall Menu website
-    public static String getMenuSewall() {
+    public static String getMenuSewall(){
+        try {
+            sewallMenu = Jsoup.connect(sewallDiningWeb).get();
+        }catch (IOException ex)
+        {
+            return "Could not connect to dining website Sewall menu";
+        }
         Element sewallElement = sewallMenu.getElementById("Mon");
         return sewallElement.text();
     }
 
     //fetches the text in the Libby Menu website
-    public static String getMenuLibby() {
+    public static String getMenuLibby(){
+        try {
+            libbyMenu = Jsoup.connect(libbyDiningWeb).get();
+        }catch (IOException ex)
+        {
+            return "Could not connect to dining website Libby menu";
+        }
         Element libbyElement = libbyMenu.getElementById("Mon");
         return libbyElement.text();
+    }
+
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dininghallmenu);
+
+        TextView sewallTextView = (TextView)findViewById(R.id.sewallMenuDisplay);
+        TextView libbyTextView = (TextView)findViewById(R.id.libbyMenuDisplay);
+
+        libbyTextView.setText(getMenuLibby());
+        sewallTextView.setText(getMenuSewall());
     }
 }
