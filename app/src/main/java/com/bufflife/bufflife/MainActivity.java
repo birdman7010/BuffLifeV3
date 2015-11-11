@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public Button button2;
     public Button button3;
     public Button button4;
+    public Button button5;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentmap);
             }
         });
+
+        button5 = (Button) findViewById(R.id.button5);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

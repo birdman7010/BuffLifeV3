@@ -39,6 +39,10 @@
             android:name=".culogin"
             android:theme="@android:style/Theme.NoTitleBar">
         </activity>
+        <activity
+            android:name=".diningHallMenu"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        </activity>
 
     </application>
 
