@@ -2,46 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/classes-5f044e8ce50f717bcc67db0721d27e556e79eca8.jar" />
-    </item>
-    <item
-        jar="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/libs/jsoup-1.8.3.jar"
+        jar="/Users/birdman/BuffLifeV3/app/libs/jsoup-1.8.3.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/jsoup-1.8.3-d0f693e7b1dc0e96842c757488ae567d8bb6b3c7.jar" />
-    </item>
-    <item
-        jar="/Users/danielyedidovich/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-cd8ea5d82b9aaac2c4d19212cd3f168e9fa0b271.jar" />
-    </item>
-    <item
-        jar="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/classes-2b121a8ce23e6e6f3405b612ed1571f2f17c6541.jar" />
-    </item>
-    <item
-        jar="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-8a80f184fa704369fe139b5897935a01c0ca3385.jar" />
-    </item>
-    <item
-        jar="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/danielyedidovich/StudioProjects/BuffLifeV3/app/build/intermediates/pre-dexed/debug/classes-42edc3ea6e41e6d7aa0a593b7c2e84cbb668d8ae.jar" />
+        <dex dex="/Users/birdman/BuffLifeV3/app/build/intermediates/pre-dexed/debug/jsoup-1.8.3-23b702494f381cfe2beb9f45d021dd49c1dd43ee.jar" />
     </item>
 
 </items>

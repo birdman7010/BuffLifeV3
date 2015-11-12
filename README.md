@@ -1,4 +1,4 @@
-# BuffLifeApp
+# BuffLife App
 CSCI3308Project
 Jesse Bird
 Josh Jenkins
