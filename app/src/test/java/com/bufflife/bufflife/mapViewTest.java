@@ -3,11 +3,10 @@ package com.bufflife.bufflife;
 /**
  * Created by birdman on 11/7/15.
  */
-import android.content.Context;
+
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.webkit.WebView;
 import android.widget.Button;
 public class mapViewTest extends ActivityUnitTestCase<mapView> {
 
