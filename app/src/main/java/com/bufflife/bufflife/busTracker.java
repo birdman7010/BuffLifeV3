@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 
 /**
- * Created by birdman on 10/11/15.
+ * Created by Jesse Bird on 10/11/15.
  */
 public class busTracker extends Activity {
     private WebView webView;

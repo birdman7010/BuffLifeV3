@@ -1,5 +1,9 @@
 package com.bufflife.bufflife;
 
+/**
+ * Created by Jesse Bird on 10/11/15.
+ */
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

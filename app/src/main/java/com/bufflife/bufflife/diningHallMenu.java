@@ -14,8 +14,8 @@ import java.io.IOException;
  * Created by danielyedidovich on 11/11/15.
  */
 public class diningHallMenu extends Activity{
-    private static String sewallDiningWeb = "https://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
-    private static String libbyDiningWeb = "https://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
+    private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
+    private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
     private static Document sewallMenu;
     private static Document libbyMenu;
 
