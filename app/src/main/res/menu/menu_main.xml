@@ -1,7 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_refresh"
         android:title="@string/action_settings"
         app:showAsAction="ifRoom" />
 </menu>
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.bufflife.bufflife.MainActivity">
+</menu>
+>>>>>>> parent of c1f8695... Better Login for my cu info
