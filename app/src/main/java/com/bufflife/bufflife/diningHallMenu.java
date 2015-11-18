@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * Created by danielyedidovich on 11/11/15.
@@ -27,25 +28,58 @@ public class diningHallMenu extends Activity{
 
     //fetches the text in the Sewall Menu website
     public static String getMenuSewall(){
+        Element sewallElement;
         try {
             sewallMenu = Jsoup.connect(sewallDiningWeb).get();
         }catch (IOException ex)
         {
             return "Could not connect to dining website Sewall menu";
         }
-        Element sewallElement = sewallMenu.getElementById("Mon");
+        if(Calendar.DAY_OF_WEEK == Calendar.MONDAY)
+            sewallElement = libbyMenu.getElementById("Mon");
+        else if(Calendar.DAY_OF_WEEK == Calendar.TUESDAY)
+            sewallElement = libbyMenu.getElementById("Tues");
+        else if(Calendar.DAY_OF_WEEK == Calendar.WEDNESDAY)
+            sewallElement = libbyMenu.getElementById("Wed");
+        else if(Calendar.DAY_OF_WEEK == Calendar.THURSDAY)
+            sewallElement = libbyMenu.getElementById("Thur");
+        else if(Calendar.DAY_OF_WEEK == Calendar.FRIDAY)
+            sewallElement = libbyMenu.getElementById("Fri");
+        else if(Calendar.DAY_OF_WEEK == Calendar.SATURDAY)
+            sewallElement = libbyMenu.getElementById("Sat");
+        else if(Calendar.DAY_OF_WEEK == Calendar.SUNDAY)
+            sewallElement = libbyMenu.getElementById("Sun");
+        else
+            return "Could not find menu for date specified";
         return sewallElement.text();
     }
 
     //fetches the text in the Libby Menu website
     public static String getMenuLibby(){
+        Element libbyElement;
         try {
             libbyMenu = Jsoup.connect(libbyDiningWeb).get();
         }catch (IOException ex)
         {
             return "Could not connect to dining website Libby menu";
         }
-        Element libbyElement = libbyMenu.getElementById("Mon");
+        if(Calendar.DAY_OF_WEEK == Calendar.MONDAY)
+            libbyElement = libbyMenu.getElementById("Mon");
+        else if(Calendar.DAY_OF_WEEK == Calendar.TUESDAY)
+            libbyElement = libbyMenu.getElementById("Tues");
+        else if(Calendar.DAY_OF_WEEK == Calendar.WEDNESDAY)
+            libbyElement = libbyMenu.getElementById("Wed");
+        else if(Calendar.DAY_OF_WEEK == Calendar.THURSDAY)
+            libbyElement = libbyMenu.getElementById("Thur");
+        else if(Calendar.DAY_OF_WEEK == Calendar.FRIDAY)
+            libbyElement = libbyMenu.getElementById("Fri");
+        else if(Calendar.DAY_OF_WEEK == Calendar.SATURDAY)
+            libbyElement = libbyMenu.getElementById("Sat");
+        else if(Calendar.DAY_OF_WEEK == Calendar.SUNDAY)
+            libbyElement = libbyMenu.getElementById("Sun");
+        else
+            return "Could not find menu for date specified";
+
         return libbyElement.text();
     }
 

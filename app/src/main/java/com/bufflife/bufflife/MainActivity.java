@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intentmap = new Intent(MainActivity.this, diningHallMenu.class);
+                Intent intentmap;
+                intentmap = new Intent(MainActivity.this, diningHallMenu.class);
                 startActivity(intentmap);
             }
         });
