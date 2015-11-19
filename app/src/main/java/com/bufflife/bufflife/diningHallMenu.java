@@ -14,8 +14,9 @@ import java.util.Calendar;
 
 /**
  * Created by danielyedidovich on 11/11/15.
- * last edited by Kyle Knight 11/18/2015  had to change to async to work and also actually grab an instance of calender to know what day it is.
- * We could also simplify to only show meals based on time of day but I think it makes more sense to see the whole day.
+ * last edited by Kyle Knight 11/18/2015  had to change to async task to work
+ * We could also simplify to only show meals based on time of day but I think it makes more sense to see the whole week.
+ * Also my I'm only getting a saturday value for the calendar date and it is definitely not saturday...
  */
 public class diningHallMenu extends Activity{
         private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
@@ -31,19 +32,19 @@ public class diningHallMenu extends Activity{
         sewallTextView = (TextView)findViewById(R.id.sewallMenuDisplay);
         libbyTextView = (TextView)findViewById(R.id.libbyMenuDisplay);
 
-        ( new diningHallMenuBackgroun() ).execute(new String[]{sewallDiningWeb,"sewall"});
+        ( new diningHallMenuBackground() ).execute(new String[]{sewallDiningWeb,"sewall"});
 
-        ( new diningHallMenuBackgroun() ).execute(new String[]{libbyDiningWeb,"libby"});
+        ( new diningHallMenuBackground() ).execute(new String[]{libbyDiningWeb,"libby"});
+        sewallTextView.setText("Loading...");
+        libbyTextView.setText("Loading...");
 
-        //sewallTextView.setText(getMenuSewall());
-       // libbyTextView.setText(getMenuLibby());
     }
 
 
     /**
      * Created by Kyle on 11/12/2015.
      */
-    public class diningHallMenuBackgroun extends AsyncTask<String,Void,String> {
+    public class diningHallMenuBackground extends AsyncTask<String,Void,String> {
         String title;
         String carrier;
         @Override
@@ -82,10 +83,10 @@ public class diningHallMenu extends Activity{
             else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
                 title += doc.getElementById("lunchRow").getElementsByClass("fri").text()+"\n\nDinner: ";
             else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("fri").text()+"\n\nDinner: ";
+                title += doc.getElementById("lunchRow").getElementsByClass("sat").text()+"\n\nDinner: ";
             else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
                 title += doc.getElementById("lunchRow").getElementsByClass("sun").text()+"\n\nDinner: ";
-            Log.d("Menu practice", "Breakfast [" + title + "]");
+            Log.d("Menu practice", "Lunch [" + title + "]");
 
 
             if(today.DAY_OF_WEEK == Calendar.MONDAY)
@@ -99,7 +100,7 @@ public class diningHallMenu extends Activity{
             else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
                 title += doc.getElementById("dinnerRow").getElementsByClass("fri").text()+"\n\n";
             else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("fri").text()+"\n\n";
+                title += doc.getElementById("dinnerRow").getElementsByClass("sat").text()+"\n\n";
             else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
                 title += doc.getElementById("dinnerRow").getElementsByClass("sun").text()+"\n\n";
             Log.d("Menu practice", "Dinner [" + title + "]");
