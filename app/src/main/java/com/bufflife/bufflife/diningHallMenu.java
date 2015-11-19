@@ -1,97 +1,120 @@
 package com.bufflife.bufflife;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 /**
  * Created by danielyedidovich on 11/11/15.
+ * last edited by Kyle Knight 11/18/2015  had to change to async to work and also actually grab an instance of calender to know what day it is.
+ * We could also simplify to only show meals based on time of day but I think it makes more sense to see the whole day.
  */
 public class diningHallMenu extends Activity{
-    private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
-    private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
-    private static Document sewallMenu;
-    private static Document libbyMenu;
+        private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
+        private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
 
-    //gets full html of the menus
-    public static void getMenuHTML() throws IOException {
-        sewallMenu = Jsoup.connect(sewallDiningWeb).get();
-        libbyMenu = Jsoup.connect(libbyDiningWeb).get();
-    }
-
-    //fetches the text in the Sewall Menu website
-    public static String getMenuSewall(){
-        Element sewallElement;
-        try {
-            sewallMenu = Jsoup.connect(sewallDiningWeb).get();
-        }catch (IOException ex)
-        {
-            return "Could not connect to dining website Sewall menu";
-        }
-        if(Calendar.DAY_OF_WEEK == Calendar.MONDAY)
-            sewallElement = libbyMenu.getElementById("Mon");
-        else if(Calendar.DAY_OF_WEEK == Calendar.TUESDAY)
-            sewallElement = libbyMenu.getElementById("Tues");
-        else if(Calendar.DAY_OF_WEEK == Calendar.WEDNESDAY)
-            sewallElement = libbyMenu.getElementById("Wed");
-        else if(Calendar.DAY_OF_WEEK == Calendar.THURSDAY)
-            sewallElement = libbyMenu.getElementById("Thur");
-        else if(Calendar.DAY_OF_WEEK == Calendar.FRIDAY)
-            sewallElement = libbyMenu.getElementById("Fri");
-        else if(Calendar.DAY_OF_WEEK == Calendar.SATURDAY)
-            sewallElement = libbyMenu.getElementById("Sat");
-        else if(Calendar.DAY_OF_WEEK == Calendar.SUNDAY)
-            sewallElement = libbyMenu.getElementById("Sun");
-        else
-            return "Could not find menu for date specified";
-        return sewallElement.text();
-    }
-
-    //fetches the text in the Libby Menu website
-    public static String getMenuLibby(){
-        Element libbyElement;
-        try {
-            libbyMenu = Jsoup.connect(libbyDiningWeb).get();
-        }catch (IOException ex)
-        {
-            return "Could not connect to dining website Libby menu";
-        }
-        if(Calendar.DAY_OF_WEEK == Calendar.MONDAY)
-            libbyElement = libbyMenu.getElementById("Mon");
-        else if(Calendar.DAY_OF_WEEK == Calendar.TUESDAY)
-            libbyElement = libbyMenu.getElementById("Tues");
-        else if(Calendar.DAY_OF_WEEK == Calendar.WEDNESDAY)
-            libbyElement = libbyMenu.getElementById("Wed");
-        else if(Calendar.DAY_OF_WEEK == Calendar.THURSDAY)
-            libbyElement = libbyMenu.getElementById("Thur");
-        else if(Calendar.DAY_OF_WEEK == Calendar.FRIDAY)
-            libbyElement = libbyMenu.getElementById("Fri");
-        else if(Calendar.DAY_OF_WEEK == Calendar.SATURDAY)
-            libbyElement = libbyMenu.getElementById("Sat");
-        else if(Calendar.DAY_OF_WEEK == Calendar.SUNDAY)
-            libbyElement = libbyMenu.getElementById("Sun");
-        else
-            return "Could not find menu for date specified";
-
-        return libbyElement.text();
-    }
-
+        TextView sewallTextView;
+        TextView libbyTextView;
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dininghallmenu);
 
-        TextView sewallTextView = (TextView)findViewById(R.id.sewallMenuDisplay);
-        TextView libbyTextView = (TextView)findViewById(R.id.libbyMenuDisplay);
+        sewallTextView = (TextView)findViewById(R.id.sewallMenuDisplay);
+        libbyTextView = (TextView)findViewById(R.id.libbyMenuDisplay);
 
-        libbyTextView.setText(getMenuLibby());
-        sewallTextView.setText(getMenuSewall());
+        ( new diningHallMenuBackgroun() ).execute(new String[]{sewallDiningWeb,"sewall"});
+
+        ( new diningHallMenuBackgroun() ).execute(new String[]{libbyDiningWeb,"libby"});
+
+        //sewallTextView.setText(getMenuSewall());
+       // libbyTextView.setText(getMenuLibby());
     }
+
+
+    /**
+     * Created by Kyle on 11/12/2015.
+     */
+    public class diningHallMenuBackgroun extends AsyncTask<String,Void,String> {
+        String title;
+        String carrier;
+        @Override
+        public String doInBackground(String... strings){
+            carrier=strings[1];
+            Log.d("isCON", "Connecting");
+            Document doc = null;
+            try {
+                doc = Jsoup.connect(strings[0]).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d("isCON", "Connected");
+            Calendar today= Calendar.getInstance();
+            if(today.DAY_OF_WEEK == Calendar.MONDAY)
+                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("mon").text()+"\n\nLunch: ";
+            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
+                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("tues").text()+"\n\nLunch: ";
+            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
+                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("wed").text()+"\n\nLunch: ";
+            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
+                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("thur").text()+"\n\nLunch: ";
+            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
+                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("fri").text()+"\n\nLunch: ";
+            else title ="Breakfast: No Meal Served\n\nLunch: ";
+            Log.d("Menu practice", "Breakfast [" + title + "]");
+
+            if(today.DAY_OF_WEEK == Calendar.MONDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("mon").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("tues").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("wed").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("thur").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("fri").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("fri").text()+"\n\nDinner: ";
+            else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
+                title += doc.getElementById("lunchRow").getElementsByClass("sun").text()+"\n\nDinner: ";
+            Log.d("Menu practice", "Breakfast [" + title + "]");
+
+
+            if(today.DAY_OF_WEEK == Calendar.MONDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("mon").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("tues").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("wed").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("thur").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("fri").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("fri").text()+"\n\n";
+            else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
+                title += doc.getElementById("dinnerRow").getElementsByClass("sun").text()+"\n\n";
+            Log.d("Menu practice", "Dinner [" + title + "]");
+
+            return title;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (carrier=="sewall")
+                sewallTextView.setText(title);
+            else
+                libbyTextView.setText(title);
+        }
+    }
+
 }
