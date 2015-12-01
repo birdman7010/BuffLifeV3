@@ -8,15 +8,23 @@ import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Formatter;
+import java.util.Locale;
 
 /**
+<<<<<<< Updated upstream
  * Created by danielyedidovich on 11/11/15.
  * last edited by Kyle Knight 11/18/2015  had to change to async task to work
  * We could also simplify to only show meals based on time of day but I think it makes more sense to see the whole week.
  * Also my I'm only getting a saturday value for the calendar date and it is definitely not saturday...
+=======
+ * Created by danielyedidovich
+>>>>>>> Stashed changes
  */
 public class diningHallMenu extends Activity{
         private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
@@ -47,6 +55,9 @@ public class diningHallMenu extends Activity{
     public class diningHallMenuBackground extends AsyncTask<String,Void,String> {
         String title;
         String carrier;
+        Calendar calendar = Calendar.getInstance();
+        StringBuilder sb = new StringBuilder();
+        Formatter formatter = new Formatter();
         @Override
         public String doInBackground(String... strings){
             carrier=strings[1];
@@ -58,52 +69,107 @@ public class diningHallMenu extends Activity{
                 e.printStackTrace();
             }
             Log.d("isCON", "Connected");
-            Calendar today= Calendar.getInstance();
-            if(today.DAY_OF_WEEK == Calendar.MONDAY)
-                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("mon").text()+"\n\nLunch: ";
-            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
-                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("tues").text()+"\n\nLunch: ";
-            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
-                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("wed").text()+"\n\nLunch: ";
-            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
-                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("thur").text()+"\n\nLunch: ";
-            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
-                title = "Breakfast: "+doc.getElementById("breakfastRow").getElementsByClass("fri").text()+"\n\nLunch: ";
-            else title ="Breakfast: No Meal Served\n\nLunch: ";
+            Elements links = null;
+            if(calendar.DAY_OF_WEEK == calendar.MONDAY) {
+                title = "Breakfast: \n";
+                links = doc.select("tr#breakfastRow td.mon li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.mon li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.mon li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.TUESDAY) {
+                title = "Breakfast: \n";
+                links = doc.select("tr#breakfastRow td.tues li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.tues li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                links = doc.select("tr#lunchRow td.'tues here' li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.tues li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.WEDNESDAY) {
+                title = "Breakfast: \n";
+                links = doc.select("tr#breakfastRow td.wed li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.wed li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.wed li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.THURSDAY) {
+                title = "Breakfast: \n";
+                links = doc.select("tr#breakfastRow td.thurs li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.thurs li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.thurs li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.FRIDAY) {
+                title = "Breakfast: \n\n";
+                links = doc.select("tr#breakfastRow td.fri li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.fri li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.fri li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.SATURDAY) {
+                title ="Breakfast: \nNo Meal Served\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.sat li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.sat li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else if(calendar.DAY_OF_WEEK == calendar.SUNDAY) {
+                title ="Breakfast: No Meal Served\n\nLunch: \n";
+                links = doc.select("tr#lunchRow td.sun li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+                title += "\n\nDinner: \n";
+                links = doc.select("tr#dinnerRow td.sun li");
+                for (Element element: links)
+                    title += element.text() + "\n";
+            }
+            else {
+                title ="Could not determine menu";
+            }
             Log.d("Menu practice", "Breakfast [" + title + "]");
-
-            if(today.DAY_OF_WEEK == Calendar.MONDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("mon").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("tues").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("wed").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("thur").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("fri").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("sat").text()+"\n\nDinner: ";
-            else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
-                title += doc.getElementById("lunchRow").getElementsByClass("sun").text()+"\n\nDinner: ";
             Log.d("Menu practice", "Lunch [" + title + "]");
-
-
-            if(today.DAY_OF_WEEK == Calendar.MONDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("mon").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.TUESDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("tues").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.WEDNESDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("wed").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.THURSDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("thur").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.FRIDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("fri").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.SATURDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("sat").text()+"\n\n";
-            else if(today.DAY_OF_WEEK == Calendar.SUNDAY)
-                title += doc.getElementById("dinnerRow").getElementsByClass("sun").text()+"\n\n";
             Log.d("Menu practice", "Dinner [" + title + "]");
+
 
             return title;
         }
