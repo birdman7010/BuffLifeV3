@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    android:id="@+id/LinearLayout01"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme"
+    android:background="@android:color/black"
+    style="@android:style/TextAppearance.Holo.Widget.Button">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar_dininghallmenu"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#222222"
+        android:elevation="4dp"
+        android:title="Dining Hall Menus"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ScrollView android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:context=".diningHallMenu"
+            android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -10,13 +38,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Sewall Menu"
         android:id="@+id/sewallTitle"
-        android:textSize="35dp" />
+        android:textSize="35dp"
+        android:textColor="#ffd700"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/sewallMenuDisplay" />
+        android:id="@+id/sewallMenuDisplay"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,11 +54,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Libby Menu"
         android:id="@+id/libbyTitle"
-        android:textSize="35dp" />
+        android:textSize="35dp"
+        android:textColor="#ffd700"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/libbyMenuDisplay" />
+        android:id="@+id/libbyMenuDisplay"
+        android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

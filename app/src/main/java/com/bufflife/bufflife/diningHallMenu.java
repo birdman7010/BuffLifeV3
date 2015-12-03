@@ -3,8 +3,11 @@ package com.bufflife.bufflife;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,6 +32,8 @@ import java.util.Locale;
 public class diningHallMenu extends Activity{
         private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
         private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
+
+    private AppCompatActivity appCompatActivity;
 
         TextView sewallTextView;
         TextView libbyTextView;
@@ -148,7 +153,7 @@ public class diningHallMenu extends Activity{
                 links = doc.select("tr#lunchRow td.sat li");
                 for (Element element: links)
                     title += element.text() + "\n";
-                title += "\n\nDinner: \n";
+                title += "\nDinner: \n";
                 links = doc.select("tr#dinnerRow td.sat li");
                 for (Element element: links)
                     title += element.text() + "\n";
