@@ -30,13 +30,15 @@ import java.util.Locale;
 >>>>>>> Stashed changes
  */
 public class diningHallMenu extends Activity{
-        private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
-        private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
+    //menu URLs
+    private static String sewallDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v3.html";
+    private static String libbyDiningWeb = "http://housing.colorado.edu/sites/default/files/menus/week_menu_table_v4.html";
 
     private AppCompatActivity appCompatActivity;
 
-        TextView sewallTextView;
-        TextView libbyTextView;
+    TextView sewallTextView;
+    TextView libbyTextView;
+
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -68,6 +70,7 @@ public class diningHallMenu extends Activity{
             carrier=strings[1];
             Log.d("isCON", "Connecting");
             Document doc = null;
+            //pull down and parse the menu HTML
             try {
                 doc = Jsoup.connect(strings[0]).get();
             } catch (IOException e) {
@@ -75,7 +78,8 @@ public class diningHallMenu extends Activity{
             }
             Log.d("isCON", "Connected");
             Elements links = null;
-            if(calendar.DAY_OF_WEEK == calendar.MONDAY) {
+            //Find the items that match the tags for the day of the week and the specific meal
+            if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.MONDAY) {
                 title = "Breakfast: \n";
                 links = doc.select("tr#breakfastRow td.mon li");
                 for (Element element: links)
@@ -89,7 +93,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.TUESDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.TUESDAY) {
                 title = "Breakfast: \n";
                 links = doc.select("tr#breakfastRow td.tues li");
                 for (Element element: links)
@@ -106,7 +110,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.WEDNESDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.WEDNESDAY) {
                 title = "Breakfast: \n";
                 links = doc.select("tr#breakfastRow td.wed li");
                 for (Element element: links)
@@ -120,7 +124,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.THURSDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.THURSDAY) {
                 title = "Breakfast: \n";
                 links = doc.select("tr#breakfastRow td.thurs li");
                 for (Element element: links)
@@ -134,7 +138,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.FRIDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.FRIDAY) {
                 title = "Breakfast: \n\n";
                 links = doc.select("tr#breakfastRow td.fri li");
                 for (Element element: links)
@@ -148,7 +152,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.SATURDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.SATURDAY) {
                 title ="Breakfast: \nNo Meal Served\n\nLunch: \n";
                 links = doc.select("tr#lunchRow td.sat li");
                 for (Element element: links)
@@ -158,7 +162,7 @@ public class diningHallMenu extends Activity{
                 for (Element element: links)
                     title += element.text() + "\n";
             }
-            else if(calendar.DAY_OF_WEEK == calendar.SUNDAY) {
+            else if(calendar.get(Calendar.DAY_OF_WEEK) == calendar.SUNDAY) {
                 title ="Breakfast: No Meal Served\n\nLunch: \n";
                 links = doc.select("tr#lunchRow td.sun li");
                 for (Element element: links)
