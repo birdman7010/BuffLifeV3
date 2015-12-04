@@ -2,3 +2,5 @@
 *.properties
 
 .gradle/2.4/taskArtifacts/cache.properties.lock
+
+*.properties
