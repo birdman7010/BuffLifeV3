@@ -6,6 +6,7 @@ import android.webkit.WebView;
 
 /**
  * Created by Jesse Bird on 10/11/15.
+ *
  */
 public class campusAlerts extends Activity {
     private WebView webView;
