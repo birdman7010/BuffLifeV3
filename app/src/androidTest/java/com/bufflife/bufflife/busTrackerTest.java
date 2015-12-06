@@ -1,7 +1,7 @@
 package com.bufflife.bufflife;
 
 /**
- * Created by birdman on 11/7/15.
+ * @author Jesse Bird on 11/7/15.
  */
 
 import android.content.Intent;
@@ -18,6 +18,10 @@ public class busTrackerTest extends ActivityUnitTestCase<busTracker> {
         super(busTracker.class);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     protected void setUp() throws Exception {
         super.setUp();

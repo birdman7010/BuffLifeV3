@@ -21,12 +21,12 @@ import java.util.Locale;
 
 /**
 <<<<<<< Updated upstream
- * Created by danielyedidovich on 11/11/15.
- * last edited by Kyle Knight 11/18/2015  had to change to async task to work
+ * @author Created by danielyedidovich on 11/11/15.
+ * @author last edited by Kyle Knight 11/18/2015  had to change to async task to work
  * We could also simplify to only show meals based on time of day but I think it makes more sense to see the whole week.
  * Also my I'm only getting a saturday value for the calendar date and it is definitely not saturday...
 =======
- * Created by danielyedidovich
+ * @author Created by danielyedidovich
 >>>>>>> Stashed changes
  */
 public class diningHallMenu extends Activity{
@@ -57,7 +57,7 @@ public class diningHallMenu extends Activity{
 
 
     /**
-     * Created by Kyle on 11/12/2015.
+     * @author Created by Kyle on 11/12/2015.
      */
     public class diningHallMenuBackground extends AsyncTask<String,Void,String> {
         String title;

@@ -25,7 +25,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-
     public class culogin extends Activity {
 
         /**
