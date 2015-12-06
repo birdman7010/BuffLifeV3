@@ -1,8 +1,10 @@
 package com.bufflife.bufflife;
 
 /**
- * Created by Jesse Bird on 10/11/15.
+ * @author Jesse Bird
+ * @version 2.0
  */
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,7 +28,9 @@ import android.widget.Toast;
 
     public class culogin extends Activity {
 
-        /* URL saved to be loaded after fb login */
+        /**
+         * Url to be loaded and saved for that API
+         */
         private static final String target_url="http://m.colorado.edu";
         private static final String target_url_prefix="m.colorado.edu";
         private Context mContext;
@@ -36,17 +40,18 @@ import android.widget.Toast;
         private long mLastBackPressTime = 0;
         private Toast mToast;
 
+        /**
+         * Creating web API with webview
+         * @param savedInstanceState display within app
+         */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
             setContentView(R.layout.culogin);
-            // final View controlsView =
-            // findViewById(R.id.fullscreen_content_controls);
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
             mWebview = (WebView) findViewById(R.id.culogin1);
-            //mWebviewPop = (WebView) findViewById(R.id.webviewPop);
             mContainer = (FrameLayout) findViewById(R.id.webview_frame);
             WebSettings webSettings = mWebview.getSettings();
             webSettings.setJavaScriptEnabled(true);
@@ -63,14 +68,18 @@ import android.widget.Toast;
 
 
         private class UriWebViewClient extends WebViewClient {
+            /**
+             *
+             * @param view loading the view
+             * @param url loading the url
+             * @return start activity
+             */
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 String host = Uri.parse(url).getHost();
-                //Log.d("shouldOverrideUrlLoading", url);
                 if (host.equals(target_url_prefix))
                 {
-                    // This is my web site, so do not override; let my WebView load
-                    // the page
+                    // let my WebView load
                     if(mWebviewPop!=null)
                     {
                         mWebviewPop.setVisibility(View.GONE);
@@ -91,6 +100,12 @@ import android.widget.Toast;
                 return true;
             }
 
+            /**
+             * Error Handler
+             * @param view checking the view
+             * @param handler SSL handler built in android studio
+             * @param error checking errors
+             */
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler,
                                            SslError error) {
@@ -100,7 +115,14 @@ import android.widget.Toast;
         }
 
         class UriChromeClient extends WebChromeClient {
-
+            /**
+             * Creating the webview API
+             * @param view using the webview
+             * @param isDialog boolean of window dialogs
+             * @param isUserGesture boolean of gestures of user in window
+             * @param resultMsg taking information of webview
+             * @return created new window API for that webview
+             */
             @Override
             public boolean onCreateWindow(WebView view, boolean isDialog,
                                           boolean isUserGesture, Message resultMsg) {
@@ -120,6 +142,10 @@ import android.widget.Toast;
                 return true;
             }
 
+            /**
+             * Closing API window at end
+             * @param window
+             */
             @Override
             public void onCloseWindow(WebView window) {
                 Log.d("onCloseWindow", "called");
