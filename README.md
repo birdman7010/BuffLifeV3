@@ -21,4 +21,7 @@ android studio emulator just press the play button at the top. To run the tests 
 java/com/bufflife/bufflife and left click on it and say that you want to run the tests in that file. That should 
 run the tests.
 
+Demo: https://youtu.be/c4IVLa1Ykcg
+
+
 
