@@ -11,11 +11,23 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:background="#010101">
+        android:background="#010101"
+        android:id="@+id/gridLayout">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:text="MyCUInfo Login"
+            android:id="@+id/button4"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:onClick="culogin"
+            android:background="@drawable/my_shape"
+            android:layout_margin="5dp"/>
 
         <Button
             android:layout_width="150dp"
@@ -31,21 +43,23 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="80dp"
+            android:text="Dining Hall Menus"
+            android:id="@+id/button5"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:onClick="diningHallMenu"
+            android:background="@drawable/my_shape"
+            android:layout_margin="5dp"
+            android:nestedScrollingEnabled="false" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="80dp"
             android:text="Campus Alerts"
             android:id="@+id/button3"
             android:layout_row="2"
             android:layout_column="0"
             android:onClick="campusAlerts"
-            android:background="@drawable/my_shape"
-            android:layout_margin="5dp"/>
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:text="MyCUInfo Login"
-            android:id="@+id/button4"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:onClick="culogin"
             android:background="@drawable/my_shape"
             android:layout_margin="5dp"/>
 
@@ -59,18 +73,6 @@
             android:onClick="mapView"
             android:background="@drawable/my_shape"
             android:layout_margin="5dp"/>
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:text="Dining Hall Menus"
-            android:id="@+id/button5"
-            android:layout_row="4"
-            android:layout_column="0"
-            android:onClick="diningHallMenu"
-            android:background="@drawable/my_shape"
-            android:layout_margin="5dp"
-            android:nestedScrollingEnabled="false" />
 
     </GridLayout>
 

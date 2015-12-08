@@ -13,13 +13,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.tweetui.Timeline;
+import com.twitter.sdk.android.tweetui.TweetUi;
+
+import io.fabric.sdk.android.Fabric;
+
+import static com.twitter.sdk.android.tweetui.TweetUtils.loadTweets;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "gRqfpBUZOTrtDvwK37v19kELC";
+    private static final String TWITTER_SECRET = "I4kQjw3BMEflRudB8x9AMANUUv8VOIeAEkksb02SCS9XnuaMvP";
+
     public Button buttonmapView;
     public Button buttonbusTracker;
     public Button buttoncampusAlerts;
     public Button buttonculogin;
     public Button buttondiningHallMenu;
+    public ListView Twitter;
 
     /**
      * Creating all buttons
@@ -27,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new TwitterCore(authConfig), new TweetUi(), new Twitter(authConfig), new TweetUi());
         setContentView(R.layout.main_activity);
 
         buttonmapView = (Button) findViewById(R.id.button);
@@ -66,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start intent activity of campusAlerts
-                Intent intentmap = new Intent(MainActivity.this, campusAlerts.class);
+                Intent intentmap = new Intent(MainActivity.this, TimelineActivity.class);
                 startActivity(intentmap);
             }
         });
@@ -89,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             /**
              *Button to go to diningHallMenu Class
              * @param v On click go the view
-             * @author  Daniel Yedidovich
+             * @author Daniel Yedidovich
              * @version 1.5
              */
             @Override
@@ -99,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentdininghall);
             }
         });
+
     }
 
     /**
@@ -114,5 +134,4 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 }
