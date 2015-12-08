@@ -8,14 +8,17 @@ import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
 public class TimelineActivity extends ListActivity {
-
+    /**
+     * @author Jesse Bird
+     * @param savedInstanceState building the display
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timeline);
 
         final UserTimeline userTimeline = new UserTimeline.Builder()
-                .screenName("cuboulderalerts")
+                .screenName("cuboulderalerts") //accessing user timeline of cuboulder alerts
                 .build();
         final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(this)
                 .setTimeline(userTimeline)
