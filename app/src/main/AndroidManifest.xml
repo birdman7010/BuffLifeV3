@@ -43,6 +43,13 @@
             android:name=".diningHallMenu"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         />
+        <activity
+            android:name=".TimelineActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ecb4cd8552c2b19822dd8ebb1e1af75b73031239" />
     </application>
 
 </manifest>
